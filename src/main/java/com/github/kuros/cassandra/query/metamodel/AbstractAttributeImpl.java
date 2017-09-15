@@ -3,15 +3,18 @@ package com.github.kuros.cassandra.query.metamodel;
 import java.lang.reflect.Member;
 
 public class AbstractAttributeImpl<X, Y> implements Attribute<X, Y> {
-    protected String name;
-    protected Class<X> declaringJavaType;
+    private String name;
+    private String columnName;
+    protected ManagedType<X> declaringType;
     protected Class<Y> javaType;
-    protected Member javaMember;
 
-    public AbstractAttributeImpl(final Class<X> declaringJavaType, final String name, final Member javaMember, final Class<Y> javaType) {
-        this.declaringJavaType = declaringJavaType;
+    public AbstractAttributeImpl(final String name,
+                                 final String columnName,
+                                 final Class<Y> javaType,
+                                 final ManagedType<X> declaringType) {
+        this.declaringType = declaringType;
         this.name = name;
-        this.javaMember = javaMember;
+        this.columnName = columnName;
         this.javaType = javaType;
     }
 
@@ -19,15 +22,34 @@ public class AbstractAttributeImpl<X, Y> implements Attribute<X, Y> {
         return name;
     }
 
-    public Class<X> getDeclaringJavaType() {
-        return declaringJavaType;
+    @Override
+    public String getColumnName() {
+        return columnName;
     }
 
+    @Override
+    public ManagedType<X> getDeclaringType() {
+        return declaringType;
+    }
+
+    @Override
     public Class<Y> getJavaType() {
         return javaType;
     }
 
-    public Member getJavaMember() {
-        return javaMember;
+    public void setName(final String name) {
+        this.name = name;
+    }
+
+    public void setColumnName(final String columnName) {
+        this.columnName = columnName;
+    }
+
+    public void setDeclaringType(final ManagedType<X> declaringType) {
+        this.declaringType = declaringType;
+    }
+
+    public void setJavaType(final Class<Y> javaType) {
+        this.javaType = javaType;
     }
 }

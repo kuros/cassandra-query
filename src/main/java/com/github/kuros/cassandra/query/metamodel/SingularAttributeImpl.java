@@ -1,11 +1,9 @@
 package com.github.kuros.cassandra.query.metamodel;
 
-import java.lang.reflect.Member;
+class SingularAttributeImpl<X, Y> extends AbstractAttributeImpl<X, Y> implements SingularAttribute<X, Y> {
 
-public class SingularAttributeImpl<X, Y> extends AbstractAttributeImpl<X, Y> implements SingularAttribute<X, Y> {
-
-    public SingularAttributeImpl(final String name, final Class<X> declaringJavaType, final Class<Y> javaType, final Member javaMember) {
-        super(declaringJavaType, name, javaMember, javaType);
+    SingularAttributeImpl(final String name, final String columnName, final Class<Y> javaType, final ManagedType<X> declaringJavaType) {
+        super(name, columnName, javaType, declaringJavaType);
     }
 
 }

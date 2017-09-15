@@ -1,19 +1,19 @@
 package com.github.kuros.cassandra.query.metamodel;
 
-import java.lang.reflect.Member;
-import java.util.Map;
-
-public class MapAttributeImpl<X, K, V> extends PluralAttributeImpl<X, Map<K, V>, V> implements MapAttribute<X, K, V> {
+public class MapAttributeImpl<X, K, V> extends AbstractAttributeImpl<X, V> implements MapAttribute<X, K, V> {
 
     private Class<K> keyJavaType;
 
-    public MapAttributeImpl(final Class<X> declaringJavaType, final String name, final Member javaMember, final Class<Map<K, V>> javaType, final Class<V> elementJavaType, final Class<K> keyJavaType) {
-        super(declaringJavaType, name, javaMember, javaType, elementJavaType);
+
+    MapAttributeImpl(final String name, final String columnName, final Class<V> javaType, final ManagedType<X> declaringType, final Class<K> keyJavaType) {
+        super(name, columnName, javaType, declaringType);
         this.keyJavaType = keyJavaType;
     }
+
 
     @Override
     public Class<K> getKeyJavaType() {
         return keyJavaType;
     }
+
 }

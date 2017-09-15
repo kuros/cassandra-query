@@ -1,13 +1,11 @@
 package com.github.kuros.cassandra.query.metamodel;
 
-import java.lang.reflect.Member;
-
-public class PluralAttributeImpl<X, C, E> extends AbstractAttributeImpl<X, C> implements PluralAttribute<X, C, E> {
+class PluralAttributeImpl<X, C, E> extends AbstractAttributeImpl<X, C> implements PluralAttribute<X, C, E> {
 
     private Class<E> elementJavaType;
 
-    public PluralAttributeImpl(final Class<X> declaringJavaType, final String name, final Member javaMember, final Class<C> javaType, final Class<E> elementJavaType) {
-        super(declaringJavaType, name, javaMember, javaType);
+    PluralAttributeImpl(final String name, final String columnName, final Class<C> javaType, final ManagedType<X> declaringJavaType, final Class<E> elementJavaType) {
+        super(name, columnName, javaType, declaringJavaType);
         this.elementJavaType = elementJavaType;
     }
 

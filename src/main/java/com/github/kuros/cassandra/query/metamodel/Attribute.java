@@ -5,7 +5,7 @@ import java.lang.reflect.Member;
 public interface Attribute<X, Y> {
 
     String getName();
-    Class<X> getDeclaringJavaType();
+    String getColumnName();
+    ManagedType<X> getDeclaringType();
     Class<Y> getJavaType();
-    Member getJavaMember();
 }
