@@ -183,10 +183,13 @@ public class MetamodelProcessor implements BeanFactoryPostProcessor {
 
     private List<String> getBeanListValues(final ConfigurableListableBeanFactory configurableListableBeanFactory, final String includePaths) {
         try {
-            final Object bean = configurableListableBeanFactory.getBean(includePaths);
-            return bean == null ? new ArrayList<>() : (List<String>) bean;
+            if (configurableListableBeanFactory.containsBean(includePaths)) {
+                return (List<String>) configurableListableBeanFactory.getBean(includePaths);
+            }
         } catch (final Exception e) {
             return new ArrayList<>();
         }
+
+        return new ArrayList<>();
     }
 }
